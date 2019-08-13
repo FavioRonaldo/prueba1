@@ -1,7 +1,9 @@
 import React,{Component} from 'react';
+import opciones from './opcioneslab';
 import {Link} from 'react-router-dom';
 import {firestoreConnect} from 'react-redux-firebase';
 import PropTypes from 'prop-types';
+
 
 class nuevohorario extends Component {
 
@@ -10,8 +12,12 @@ class nuevohorario extends Component {
         profesor: '',
         hora_ini: '',
         hora_fin: '',
-        laboratorio: ''
+        laboratorio: '',
+        resultado:[]
+
     }
+
+    
     //agregar usuario
     agregarusuario = e =>{
         e.preventDefault();
@@ -34,7 +40,41 @@ class nuevohorario extends Component {
         this.setState({
              [e.target.name]: e.target.value
         })
+        
     }
+
+
+    
+
+    //consulta de labortorios
+    laboratorios=()=>{
+        
+
+        //obtener el valor a buscar
+        
+        
+        //extraer firestore
+        const {firestore}=this.props;
+
+        //hacer la consulta
+        firestore.collection('laboratorios').onSnapshot((snapshot)=>{
+            const datos = snapshot.docs.map((dato)=>({
+              id: dato.id,
+              ...dato.data()
+            }))
+            this.setState({
+                resultado: datos
+            })
+            console.log(this.state.resultado)
+        })
+        
+        
+    }
+    
+
+    
+    
+
     render(){
        return( 
         <div className="row">
@@ -55,6 +95,7 @@ class nuevohorario extends Component {
                                     <input type="text" className="form-control" name="materia"
                                     placeholder="Nombre de la materia" required
                                     onChange={this.leerdatos}
+                                    onKeyPressCapture={this.laboratorios}
                                     value={this.state.materia}/>
                                 </div>
                                 <div className="form-group">
@@ -75,15 +116,40 @@ class nuevohorario extends Component {
                                     <label>Profesor:</label>
                                     <input type="text" className="form-control" name="profesor"
                                     placeholder="Nombre del profesor" required
-                                    onChange={this.leerdatos}
+                                    onChange={(this.leerdatos)}
                                     value={this.state.profesor}/>
                                 </div>
                                 <div className="form-group">
                                     <label>Laboratorio:</label>
-                                    <input type="text" className="form-control" name="laboratorio"
+
+                                    <select
+                                        className="form-control"
+                                        name="laboratorio"
+                                        onChange={this.leerdatos}
+                                    onLoad={this.laboratorios}
+                                        >
+                                          {this.state.resultado.map(datos=>(
+                                            //<opciones key={datos.id} dato={datos}/>
+                                            <option
+                                            
+                                            value={datos.nombre}
+                                            >{datos.nombre}</option>
+                                            ))}                             
+                                            
+                                             
+                                                
+                                        <option>Seleccione un laboratorio</option>
+                                        
+                                    </select>
+
+
+                                    
+
+                                    {/*<input type="text" className="form-control" name="laboratorio"
                                     placeholder="Nombre del Laboratorio" required
                                     onChange={this.leerdatos}
-                                    value={this.state.laboratorio}/>
+                                    onLoad={this.laboratorios}
+                                          value={this.state.laboratorio}/>*/}
                                 </div>
                                 
                                 <input type="submit"
@@ -92,6 +158,7 @@ class nuevohorario extends Component {
                             </form>
                         </div>
                     </div>
+                   
             </div>
         
         );
@@ -100,4 +167,4 @@ class nuevohorario extends Component {
 nuevohorario.propTypes = {
     firestore: PropTypes.object.isRequired
 }
-export default firestoreConnect() (nuevohorario);
+export default firestoreConnect()(nuevohorario);

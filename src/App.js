@@ -23,6 +23,10 @@ import NuevoUsuario from './componentes/administrador/nuevousuario';
 
 import horario from './componentes/horario/horarios';
 import nuevohorario from './componentes/horario/nuevohorario';
+import editarhorario from './componentes/horario/editarhorario';
+import mostrarhorario from './componentes/horario/mostrarhorario';
+
+
 import ra from './componentes/realidad/ar';
 
 import auth from './componentes/auth/login';
@@ -60,8 +64,9 @@ function App() {
 
 
         <Route exact path="/horarios" component={UserIsAuthenticated(horario)}/>
-        
+        <Route exact path="/horario/editar/:id" component={UserIsAuthenticated(editarhorario)}/>
         <Route exact path="/horario/nuevo" component={UserIsAuthenticated(nuevohorario)}/>
+        <Route exact path="/horario/:id" component={UserIsAuthenticated(mostrarhorario)}/>
         <Route exact path="/realidadaumentada" component={UserIsAuthenticated(ra)}/>
         
       </Switch>
