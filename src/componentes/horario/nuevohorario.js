@@ -48,11 +48,7 @@ class nuevohorario extends Component {
 
     //consulta de labortorios
     laboratorios=()=>{
-        
-
-        //obtener el valor a buscar
-        
-        
+       
         //extraer firestore
         const {firestore}=this.props;
 
@@ -65,12 +61,12 @@ class nuevohorario extends Component {
             this.setState({
                 resultado: datos
             })
-            console.log(this.state.resultado)
+            
         })
         
         
     }
-    
+  
 
     
     
@@ -95,7 +91,7 @@ class nuevohorario extends Component {
                                     <input type="text" className="form-control" name="materia"
                                     placeholder="Nombre de la materia" required
                                     onChange={this.leerdatos}
-                                    onKeyPressCapture={this.laboratorios}
+                                    onKeyUp={this.laboratorios}
                                     value={this.state.materia}/>
                                 </div>
                                 <div className="form-group">
