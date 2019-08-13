@@ -13,7 +13,8 @@ class nuevohorario extends Component {
         hora_ini: '',
         hora_fin: '',
         laboratorio: '',
-        resultado:[]
+        resultado:[],
+        val:true
 
     }
 
@@ -72,6 +73,12 @@ class nuevohorario extends Component {
     
 
     render(){
+
+        if(this.state.val){
+            this.laboratorios();
+            this.state.val=false;
+        }
+
        return( 
         <div className="row">
                     <div className="col-12 mb-4">
@@ -91,7 +98,7 @@ class nuevohorario extends Component {
                                     <input type="text" className="form-control" name="materia"
                                     placeholder="Nombre de la materia" required
                                     onChange={this.leerdatos}
-                                    onKeyUp={this.laboratorios}
+                                   
                                     value={this.state.materia}/>
                                 </div>
                                 <div className="form-group">
@@ -124,6 +131,8 @@ class nuevohorario extends Component {
                                         onChange={this.leerdatos}
                                     onLoad={this.laboratorios}
                                         >
+
+                                        <option>Seleccione un laboratorio</option>
                                           {this.state.resultado.map(datos=>(
                                             //<opciones key={datos.id} dato={datos}/>
                                             <option
@@ -134,7 +143,7 @@ class nuevohorario extends Component {
                                             
                                              
                                                 
-                                        <option>Seleccione un laboratorio</option>
+                                       
                                         
                                     </select>
 
