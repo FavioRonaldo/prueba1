@@ -87,7 +87,21 @@ class ar extends Component {
         ))}*/}
 
         </Marker>
-        <Marker parameters={{type: 'pattern', url: 'lab2.patt' }}>
+        <Marker parameters={{type: 'pattern', url: 'https://tecnobits.favioandrade.com/tarea/Laboratorios/lab2.patt' }}>
+        <a-text value="hola"
+        rotation="-90 0 0" color="green" height="2.5" width="2.5" position='0 0.5 0'></a-text>
+      <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
+
+
+      </Marker>
+      <Marker parameters={{type: 'pattern', url: 'https://tecnobits.favioandrade.com/tarea/Laboratorios/lab3.patt' }}>
+        <a-text value="hola"
+        rotation="-90 0 0" color="green" height="2.5" width="2.5" position='0 0.5 0'></a-text>
+      <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
+
+
+      </Marker>
+      <Marker parameters={{type: 'pattern', url: 'https://tecnobits.favioandrade.com/tarea/Laboratorios/lab1.patt' }}>
         <a-text value="hola"
         rotation="-90 0 0" color="green" height="2.5" width="2.5" position='0 0.5 0'></a-text>
       <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
