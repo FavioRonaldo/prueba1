@@ -12,9 +12,11 @@ class ar extends Component {
     state={
         ini:'hola',
         val:true,
-        resultado1: '',
-        resultado2: '',
-        val2:true
+        resultado1:[],
+        resultado2:[],
+        val2:true,
+        respuesta:''
+        
         
     }
     
@@ -32,7 +34,18 @@ class ar extends Component {
             this.setState({
                 resultado1: datos
             })
-            console.log(this.state.resultado1)
+            var acumulador='';
+            for(var x=0;x<this.state.resultado1.length;x++){
+             acumulador=acumulador+this.state.resultado1[x].materia+' '+this.state.resultado1[x].profesor+' '+
+             this.state.resultado1[x].hora_ini+' '+this.state.resultado1[x].hora_fin
+             //console.log(this.state.resultado1[x].materia)
+              
+          }
+            console.log(acumulador)
+            this.setState({
+              respuesta: acumulador
+            })
+            console.log(this.state.respuesta)
         })
         
         
@@ -59,15 +72,21 @@ class ar extends Component {
   
 
     render(){
+      var obt='aqui estan los resultados';
+      const obt2='';
         
     if(this.state.val) {  
         this.laboratorio1();
+        obt=this.state.resultado1;
+        
         this.state.val=false;
     }
     if(this.state.val2) {  
         this.laboratorio2();
+
         this.state.val2=false;
     }
+    
     
    
 
@@ -88,7 +107,7 @@ class ar extends Component {
 
         </Marker>
         <Marker parameters={{type: 'pattern', url: 'https://raw.githubusercontent.com/FavioRonaldo/prueba1/master/marcadores/lab2.patt' }}>
-        <a-text value="hola"
+        <a-text value={this.state.respuesta}
         rotation="-90 0 0" color="green" height="2.5" width="2.5" position='0 0.5 0'></a-text>
       <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
 
