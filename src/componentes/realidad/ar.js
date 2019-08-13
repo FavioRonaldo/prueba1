@@ -75,14 +75,27 @@ class ar extends Component {
        
     <AFrameRenderer arToolKit={{ sourceType: 'webcam' }} >
         <Marker parameters={{ preset: 'hiro' }}>
+        <a-text value="hola"
+        rotation="-90 0 0" color="green" height="2.5" width="2.5" position='0 0.5 0'></a-text>
+      <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
 
 
-            
         {/*<a-box color="blue" material="opacity: 1;" position="0 0.09 0" scale="0.4 0.8 0.8">
             <a-animation attribute="rotation" to="360 0 0" dur="5000" easing="linear" repeat="indefinite" />
-   </a-box>*/}
+   </a-box>           {this.state.resultado1.map(lab1=>(
+            lab1.materia
+        ))}*/}
 
         </Marker>
+        <Marker parameters={{type: 'pattern', url: 'lab2.patt' }}>
+        <a-text value="hola"
+        rotation="-90 0 0" color="green" height="2.5" width="2.5" position='0 0.5 0'></a-text>
+      <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
+
+
+      </Marker>
+
+
     </AFrameRenderer>
 );
         
