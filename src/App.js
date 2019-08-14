@@ -67,7 +67,7 @@ function App() {
         <Route exact path="/horario/editar/:id" component={UserIsAuthenticated(editarhorario)}/>
         <Route exact path="/horario/nuevo" component={UserIsAuthenticated(nuevohorario)}/>
         <Route exact path="/horario/:id" component={UserIsAuthenticated(mostrarhorario)}/>
-        <Route exact path="/realidadaumentada" component={UserIsAuthenticated(ra)}/>
+        <Route exact path="/realidadaumentada" component={ra}/>
         
       </Switch>
       </div>

@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import opciones from './opcioneslab';
+
 import {Link} from 'react-router-dom';
 import {firestoreConnect} from 'react-redux-firebase';
 import PropTypes from 'prop-types';
@@ -14,7 +14,8 @@ class nuevohorario extends Component {
         hora_fin: '',
         laboratorio: '',
         resultado:[],
-        val:true
+        val:true,
+        dia:''
 
     }
 
@@ -24,7 +25,8 @@ class nuevohorario extends Component {
         e.preventDefault();
 
         //extraer valores del state
-        const nuevohorario={...this.state}
+        //const nuevohorario={...this.state}
+        const nuevohorario={...this.state.materia[0],...this.state.profesor[1],...this.state.hora_ini[2],...this.state.hora_fin[3],...this.state.laboratorio[4],...this.state.dia[5]}
         
         //extraer firestore de props
         const {firestore, history}= this.props
@@ -122,6 +124,13 @@ class nuevohorario extends Component {
                                     placeholder="Nombre del profesor" required
                                     onChange={(this.leerdatos)}
                                     value={this.state.profesor}/>
+                                </div>
+                                <div className="form-group">
+                                    <label>Día:</label>
+                                    <input type="text" className="form-control" name="dia"
+                                    placeholder="Dia" required
+                                    onChange={(this.leerdatos)}
+                                    value={this.state.dia}/>
                                 </div>
                                 <div className="form-group">
                                     <label>Laboratorio:</label>

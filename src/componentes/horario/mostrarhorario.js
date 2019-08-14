@@ -54,6 +54,12 @@ const mostrarhorario =({horario}) => {
                     </span>{' '}
                     {horario.laboratorio}
                 </p>
+                <p>
+                    <span className="font-weight-bold">
+                       Día:
+                    </span>{' '}
+                    {horario.dia}
+                </p>
             </div>
        </div>
         

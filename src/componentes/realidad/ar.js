@@ -1,8 +1,7 @@
 import React,{Component} from 'react';
-import {compose} from 'redux';
-import {connect} from 'react-redux';
+
 import {firestoreConnect} from 'react-redux-firebase';
-import Spinner from '../layout/Spinner';
+
 import PropTypes from 'prop-types';
 import { AFrameRenderer, Marker } from 'react-web-ar';
 
@@ -10,12 +9,13 @@ import { AFrameRenderer, Marker } from 'react-web-ar';
 
 class ar extends Component {
     state={
-        ini:'hola',
+        
         val:true,
         resultado1:[],
         resultado2:[],
         val2:true,
-        respuesta:''
+        respuesta:'',
+        respuesta2:''
         
         
     }
@@ -36,16 +36,16 @@ class ar extends Component {
             })
             var acumulador='';
             for(var x=0;x<this.state.resultado1.length;x++){
-             acumulador=acumulador+this.state.resultado1[x].materia+' '+this.state.resultado1[x].profesor+' '+
-             this.state.resultado1[x].hora_ini+' '+this.state.resultado1[x].hora_fin
+             acumulador=acumulador+this.state.resultado1[x].materia+' '+this.state.resultado1[x].profesor+'\n'+
+             this.state.resultado1[x].hora_ini+' '+this.state.resultado1[x].hora_fin+' '+this.state.resultado1[x].laboratorio+'\n'
              //console.log(this.state.resultado1[x].materia)
               
           }
-            console.log(acumulador)
+            //console.log(acumulador)
             this.setState({
               respuesta: acumulador
             })
-            console.log(this.state.respuesta)
+           // console.log(this.state.respuesta)
         })
         
         
@@ -65,25 +65,40 @@ class ar extends Component {
                 resultado2: datos
             })
             console.log(this.state.resultado2)
+
+            var acumulador1='';
+            for(var x=0;x<this.state.resultado2.length;x++){
+             acumulador1=acumulador1+this.state.resultado2[x].materia+' '+this.state.resultado2[x].profesor+'\n'+
+             this.state.resultado2[x].hora_ini+' '+this.state.resultado2[x].hora_fin+'\n'
+             //console.log(this.state.resultado1[x].materia)
+              
+          }
+            //console.log(acumulador1)
+            this.setState({
+              respuesta2: acumulador1
+            })
+            //console.log(this.state.respuesta2)
+            
         })
+        
+       
         
         
     }
   
 
     render(){
-      var obt='aqui estan los resultados';
-      const obt2='';
+      
         
     if(this.state.val) {  
         this.laboratorio1();
-        obt=this.state.resultado1;
+        console.log('consulta lab 1');
         
         this.state.val=false;
     }
     if(this.state.val2) {  
         this.laboratorio2();
-
+        console.log('consulta lab 2');
         this.state.val2=false;
     }
     
@@ -95,34 +110,27 @@ class ar extends Component {
     <AFrameRenderer arToolKit={{ sourceType: 'webcam' }} >
         <Marker parameters={{ preset: 'hiro' }}>
         <a-text value="hola"
-        rotation="-90 0 0" color="green" height="2.5" width="2.5" position='0 0.5 0'></a-text>
+        rotation="-90 0 0" color="green" height="2.5" width="2.5" position='-0.8 0.5 0'></a-text>
       <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
-
-
-        {/*<a-box color="blue" material="opacity: 1;" position="0 0.09 0" scale="0.4 0.8 0.8">
-            <a-animation attribute="rotation" to="360 0 0" dur="5000" easing="linear" repeat="indefinite" />
-   </a-box>           {this.state.resultado1.map(lab1=>(
-            lab1.materia
-        ))}*/}
 
         </Marker>
         <Marker parameters={{type: 'pattern', url: 'https://raw.githubusercontent.com/FavioRonaldo/prueba1/master/marcadores/lab2.patt' }}>
         <a-text value={this.state.respuesta}
-        rotation="-90 0 0" color="green" height="2.5" width="2.5" position='0 0.5 0'></a-text>
+        rotation="-90 0 0" color="green" height="2.5" width="2.5" position='-0.8 0.5 0'></a-text>
       <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
 
 
       </Marker>
       <Marker parameters={{type: 'pattern', url: 'https://raw.githubusercontent.com/FavioRonaldo/prueba1/master/marcadores/lab3.patt' }}>
-        <a-text value="hola"
-        rotation="-90 0 0" color="green" height="2.5" width="2.5" position='0 0.5 0'></a-text>
+        <a-text value={this.state.respuesta2}
+        rotation="-90 0 0" color="green" height="2.5" width="2.5" position='-0.8 0.5 0'></a-text>
       <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
 
 
       </Marker>
       <Marker parameters={{type: 'pattern', url: 'https://raw.githubusercontent.com/FavioRonaldo/prueba1/master/marcadores/lab1.patt' }}>
         <a-text value="hola"
-        rotation="-90 0 0" color="green" height="2.5" width="2.5" position='0 0.5 0'></a-text>
+        rotation="-90 0 0" color="green" height="2.5" width="2.5" position='-0.8 0.5 0'></a-text>
       <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
 
 

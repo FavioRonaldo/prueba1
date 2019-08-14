@@ -8,6 +8,11 @@ import PropTypes from 'prop-types';
 
 
 class editarhorario extends Component {
+    state={
+        resultado:[],
+        val:true,
+        laboratorio:''
+    }
 
     //crear refs
     materiaImput=React.createRef();
@@ -24,7 +29,8 @@ class editarhorario extends Component {
             materia : this.materiaImput.current.value,
             hora_ini: this.hora_iniImput.current.value,
             hora_fin: this.hora_finImput.current.value,
-            laboratorio: this.laboratorioImput.current.value
+            laboratorio: this.state.laboratorio,
+            profesor: this.profesorImput.current.value
             
         }
         //extraer firestore y hidtory de props
@@ -38,10 +44,43 @@ class editarhorario extends Component {
         },horarioactualizado).then(history.push('/horarios'))
 
     }
+    laboratorios=()=>{
+       
+        //extraer firestore
+        const {firestore}=this.props;
+
+        //hacer la consulta
+        firestore.collection('laboratorios').onSnapshot((snapshot)=>{
+            const datos = snapshot.docs.map((dato)=>({
+              id: dato.id,
+              ...dato.data()
+            }))
+            this.setState({
+                resultado: datos
+            })
+            
+        })
+       
+        
+        
+    }
+    leerdatos= e =>{
+        this.setState({
+             [e.target.name]: e.target.value
+        })
+       
+        
+    }
     render(){
+        if(this.state.val){
+            this.laboratorios();
+            this.state.val=false;
+            
+        }
         const{horario}= this.props;
         if(!horario) return <Spinner />
-        console.log(horario)
+        
+        
        return( 
         <div className="row">
         <div className="col-12 mb-4">
@@ -77,10 +116,27 @@ class editarhorario extends Component {
                     </div>
                     <div className="form-group">
                     <label>Laboratorio:</label>
-                        <input type="text" className="form-control" name="laboratorio"
-                        placeholder="Nombre del Laboratorio" required
-                        ref={this.laboratorioImput}
-                        defaultValue={horario.laboratorio}/>
+
+                    <select
+                    className="form-control"
+                    name="laboratorio"
+                    onChange={this.leerdatos}
+                    onLoad={this.laboratorios}
+                    defaultValue={horario.laboratorio}
+                    >
+
+                        
+                        {this.state.resultado.map(datos=>(
+                        
+                        <option key={datos.id}                                            
+                        value={datos.nombre}
+                        defaultValue={horario.laboratorio}
+                        >{datos.nombre}</option>
+                        ))}                             
+                    </select>
+
+
+                       
                     </div>
                     <div className="form-group">
                     <label>Hora Fin:</label>
@@ -96,6 +152,7 @@ class editarhorario extends Component {
                         ref={this.profesorImput}
                         defaultValue={horario.profesor}/>
                     </div>
+                    
                     <input type="submit"
                     defaultValue="Editar horario"
                     className="btn btn-success"/>

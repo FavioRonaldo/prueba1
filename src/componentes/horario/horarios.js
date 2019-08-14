@@ -41,6 +41,7 @@ const horarios=({horarios,firestore,history}) => {
                         <th scope="col">Hora Fin</th>
                         <th scope="col">Profesor</th>
                         <th scope="col">Laboratorio</th>
+                        <th scope="col">Día</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -52,6 +53,7 @@ const horarios=({horarios,firestore,history}) => {
                          <td>{usuario.hora_fin}</td>
                          <td>{usuario.profesor}</td>
                          <td>{usuario.laboratorio}</td>
+                         <td>{usuario.dia}</td>
                          <td>
                                <Link to={`/horario/${usuario.id}`} 
                                     className="btn btn-success btn-block">

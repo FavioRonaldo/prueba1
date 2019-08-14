@@ -46,22 +46,17 @@ class navbar extends Component {
 </button>
 
 <div className="collapse navbar-collapse" id="navbarColor01">
-
+    <ul className="navbar-nav mr-auto">
+    <li className="nav-item">
+                <Link to={'/realidadaumentada'} className="nav-link">
+                 Realidad Aumentada
+                </Link>
+    </li>  
+    </ul>
     {usuarioautenticado ?(
     <ul className="navbar-nav mr-auto">
     
-    {/*
-    <li className="nav-item">
-        <Link to={'/suscriptores'} className="nav-link">
-            Suscriptores
-        </Link>
-    </li>
-    <li className="nav-item">
-        <Link to={'/libro'} className="nav-link">
-            Libros
-        </Link>
-    </li>
-    */}
+    
     <li className="nav-item">
                 <Link to={'/usuario'} className="nav-link">
                 Usuarios
@@ -71,15 +66,12 @@ class navbar extends Component {
                 <Link to={'/horarios'} className="nav-link">
                  Horarios
                 </Link>
-    </li>
-    <li className="nav-item">
-                <Link to={'/realidadaumentada'} className="nav-link">
-                 Realidad Aumentada
-                </Link>
-    </li>
-    
+    </li> 
+   
     </ul>
     ):null}
+    
+    
     {usuarioautenticado ? (
 
         <ul className="navbar--nav-ml-auto">
