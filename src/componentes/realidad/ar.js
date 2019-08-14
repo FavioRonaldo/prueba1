@@ -156,21 +156,21 @@ class ar extends Component {
       <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
 
         </Marker>
-        <Marker parameters={{type: 'pattern', url: 'https://raw.githubusercontent.com/FavioRonaldo/prueba1/master/marcadores/lab2.patt?token=AL6UVPQHNECKT673OT7IPM25KNTUQ' }}>
+        <Marker parameters={{type: 'pattern', url: 'https://raw.githubusercontent.com/FavioRonaldo/graficacionfinal/master/marcadores/lab2.patt' }}>
         <a-text value={this.state.respuesta}
         rotation="-90 0 0" color="green" height="2.5" width="2.5" position='-0.8 0.5 0'></a-text>
       <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
 
 
       </Marker>
-      <Marker parameters={{type: 'pattern', url: 'https://raw.githubusercontent.com/FavioRonaldo/prueba1/master/marcadores/lab3.patt?token=AL6UVPWW3GHCULFCOVYB4L25KNTXE' }}>
+      <Marker parameters={{type: 'pattern', url: 'https://raw.githubusercontent.com/FavioRonaldo/graficacionfinal/master/marcadores/lab3.patt' }}>
         <a-text value={this.state.respuesta2}
         rotation="-90 0 0" color="green" height="2.5" width="2.5" position='-0.8 0.5 0'></a-text>
       <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
 
 
       </Marker>
-      <Marker parameters={{type: 'pattern', url: 'https://raw.githubusercontent.com/FavioRonaldo/prueba1/master/marcadores/lab1.patt?token=AL6UVPVJPZDZVLYL7K4SZ7K5KNTZI' }}>
+      <Marker parameters={{type: 'pattern', url: 'https://raw.githubusercontent.com/FavioRonaldo/graficacionfinal/master/marcadores/lab1.patt' }}>
         <a-text value={this.state.respuesta3}
         rotation="-90 0 0" color="green" height="2.5" width="2.5" position='-0.8 0.5 0'></a-text>
       <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
