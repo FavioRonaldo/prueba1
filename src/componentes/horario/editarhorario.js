@@ -20,6 +20,7 @@ class editarhorario extends Component {
     hora_finImput=React.createRef();
     profesorImput=React.createRef();
     laboratorioImput=React.createRef();
+    diaImput=React.createRef();
 
     //edita el horario
     editarhorario = e => {
@@ -30,7 +31,8 @@ class editarhorario extends Component {
             hora_ini: this.hora_iniImput.current.value,
             hora_fin: this.hora_finImput.current.value,
             laboratorio: this.state.laboratorio,
-            profesor: this.profesorImput.current.value
+            profesor: this.profesorImput.current.value,
+            dia: this.diaImput.current.value
             
         }
         //extraer firestore y hidtory de props
@@ -113,6 +115,13 @@ class editarhorario extends Component {
                         placeholder="Apellido del usuario" required
                         ref={this.hora_iniImput}
                         defaultValue={horario.hora_ini}/>
+                    </div>
+                    <div className="form-group">
+                    <label>Día:</label>
+                        <input type="text" className="form-control" name="dia"
+                        placeholder="Dia" required
+                        ref={this.diaImput}
+                        defaultValue={horario.dia}/>
                     </div>
                     <div className="form-group">
                     <label>Laboratorio:</label>

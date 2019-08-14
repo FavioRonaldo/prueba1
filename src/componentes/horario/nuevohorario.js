@@ -26,7 +26,15 @@ class nuevohorario extends Component {
 
         //extraer valores del state
         //const nuevohorario={...this.state}
-        const nuevohorario={...this.state.materia[0],...this.state.profesor[1],...this.state.hora_ini[2],...this.state.hora_fin[3],...this.state.laboratorio[4],...this.state.dia[5]}
+        const nuevohorario={
+           
+            materia : this.state.materia,
+            hora_ini: this.state.hora_ini,
+            hora_fin: this.state.hora_fin,
+            laboratorio: this.state.laboratorio,
+            profesor: this.state.profesor,
+            dia: this.state.dia
+        }
         
         //extraer firestore de props
         const {firestore, history}= this.props
