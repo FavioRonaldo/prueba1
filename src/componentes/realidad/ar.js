@@ -13,9 +13,12 @@ class ar extends Component {
         val:true,
         resultado1:[],
         resultado2:[],
+        resultado3:[],
         val2:true,
+        val3:true,
         respuesta:'',
-        respuesta2:''
+        respuesta2:'',
+        respuesta3:''
   
     }
     
@@ -63,7 +66,7 @@ class ar extends Component {
             this.setState({
                 resultado2: datos
             })
-            console.log(this.state.resultado2)
+            //console.log(this.state.resultado2)
 
             var acumulador1='';
             for(var x=0;x<this.state.resultado2.length;x++){
@@ -84,6 +87,41 @@ class ar extends Component {
         
         
     }
+    laboratorio3=()=>{
+       
+      //extraer firestore
+      const {firestore}=this.props;
+
+      //hacer la consulta
+      firestore.collection('horarios').where("laboratorio","==","Laboratorio 3").onSnapshot((snapshot)=>{
+          const datos = snapshot.docs.map((dato)=>({
+            id: dato.id,
+            ...dato.data()
+          }))
+          this.setState({
+              resultado3: datos
+          })
+          console.log(this.state.resultado3)
+
+          var acumulador1='';
+          for(var x=0;x<this.state.resultado3.length;x++){
+           acumulador1=acumulador1+this.state.resultado3[x].materia+', Profe:'+this.state.resultado3[x].profesor+'\n'+
+           this.state.resultado3[x].hora_ini+' '+this.state.resultado3[x].hora_fin+'\n*************\n'
+           //console.log(this.state.resultado1[x].materia)
+            
+        }
+          //console.log(acumulador1)
+          this.setState({
+            respuesta3: acumulador1
+          })
+          //console.log(this.state.respuesta2)
+          
+      })
+      
+     
+      
+      
+  }
   
 
     render(){
@@ -100,6 +138,11 @@ class ar extends Component {
         console.log('consulta lab 2');
         this.state.val2=false;
     }
+    if(this.state.val3) {  
+      this.laboratorio3();
+      console.log('consulta lab 2');
+      this.state.val3=false;
+  }
     
     
    
@@ -113,7 +156,27 @@ class ar extends Component {
       <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
 
         </Marker>
-      
+        <Marker parameters={{type: 'pattern', url: 'https://raw.githubusercontent.com/FavioRonaldo/prueba1/master/marcadores/lab2.patt?token=AL6UVPQHNECKT673OT7IPM25KNTUQ' }}>
+        <a-text value={this.state.respuesta}
+        rotation="-90 0 0" color="green" height="2.5" width="2.5" position='-0.8 0.5 0'></a-text>
+      <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
+
+
+      </Marker>
+      <Marker parameters={{type: 'pattern', url: 'https://raw.githubusercontent.com/FavioRonaldo/prueba1/master/marcadores/lab3.patt?token=AL6UVPWW3GHCULFCOVYB4L25KNTXE' }}>
+        <a-text value={this.state.respuesta2}
+        rotation="-90 0 0" color="green" height="2.5" width="2.5" position='-0.8 0.5 0'></a-text>
+      <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
+
+
+      </Marker>
+      <Marker parameters={{type: 'pattern', url: 'https://raw.githubusercontent.com/FavioRonaldo/prueba1/master/marcadores/lab1.patt?token=AL6UVPVJPZDZVLYL7K4SZ7K5KNTZI' }}>
+        <a-text value={this.state.respuesta3}
+        rotation="-90 0 0" color="green" height="2.5" width="2.5" position='-0.8 0.5 0'></a-text>
+      <a-plane color="#CCC" height="1" width="2" rotation="-90 0 0"></a-plane>
+
+
+      </Marker>
 
 
     </AFrameRenderer>
