@@ -118,10 +118,25 @@ class editarhorario extends Component {
                     </div>
                     <div className="form-group">
                     <label>Día:</label>
-                        <input type="text" className="form-control" name="dia"
+                        {/*<input type="text" className="form-control" name="dia"
                         placeholder="Dia" required
                         ref={this.diaImput}
-                        defaultValue={horario.dia}/>
+       defaultValue={horario.dia}/>*/}
+                        <select
+                        className="form-control"
+                        name="dia"
+                        onChange={this.leerdatos}
+                        defaultValue={horario.dia}
+                        >
+
+                        <option>Seleccione un Día</option>
+                        <option>Lunes</option>                            
+                        <option>Martes</option>
+                        <option>Miercoles</option>
+                        <option>Jueves</option>
+                        <option>Viernes</option>                               
+                        </select>
+                                   
                     </div>
                     <div className="form-group">
                     <label>Laboratorio:</label>

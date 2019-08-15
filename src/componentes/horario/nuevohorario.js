@@ -135,10 +135,21 @@ class nuevohorario extends Component {
                                 </div>
                                 <div className="form-group">
                                     <label>Día:</label>
-                                    <input type="text" className="form-control" name="dia"
-                                    placeholder="Dia" required
-                                    onChange={(this.leerdatos)}
-                                    value={this.state.dia}/>
+
+                                    <select
+                                        className="form-control"
+                                        name="dia"
+                                        onChange={this.leerdatos}
+                                    >
+
+                                        <option>Seleccione un Día</option>
+                                          <option>Lunes</option>                            
+                                          <option>Martes</option>
+                                          <option>Miercoles</option>
+                                          <option>Jueves</option>
+                                          <option>Viernes</option>                               
+                                    </select>
+                                   
                                 </div>
                                 <div className="form-group">
                                     <label>Laboratorio:</label>
