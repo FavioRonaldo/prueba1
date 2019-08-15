@@ -127,6 +127,7 @@ class editarhorario extends Component {
                         name="dia"
                         onChange={this.leerdatos}
                         defaultValue={horario.dia}
+                        ref={this.diaImput}
                         >
 
                         <option>Seleccione un Día</option>
@@ -147,6 +148,7 @@ class editarhorario extends Component {
                     onChange={this.leerdatos}
                     onLoad={this.laboratorios}
                     defaultValue={horario.laboratorio}
+                    ref={this.laboratorioImput}
                     >
 
                         
@@ -154,7 +156,7 @@ class editarhorario extends Component {
                         
                         <option key={datos.id}                                            
                         value={datos.nombre}
-                        defaultValue={horario.laboratorio}
+                        
                         >{datos.nombre}</option>
                         ))}                             
                     </select>
